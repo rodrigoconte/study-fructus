@@ -8,8 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @AppStorage("isOnboarding") var isOnboarding: Bool?
+    
+    var fruitsData: [Fruit] = fruits
+    
     var body: some View {
-        FruitCardView(fruit: fruits[2])
+        NavigationView {
+            List() {
+                ForEach(fruitsData.shuffled()) { fruit in
+                    FruitRowView(fruit: fruit)
+                        .padding(.vertical, 4)
+                }
+            }// - List
+            .listStyle(.plain)
+            .navigationTitle("Fruits")
+        }// - Navigation
     }// - Body
 }// - ContentView
 

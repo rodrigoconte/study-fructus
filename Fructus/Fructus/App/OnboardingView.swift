@@ -11,12 +11,13 @@ struct OnboardingView: View {
     // MARK: - Properties
     
     
+    var fruitsData = fruits
     
     // MARK: - Body
     
     var body: some View {
         TabView {
-            ForEach(fruits) { fruit in
+            ForEach(fruitsData) { fruit in
                 FruitCardView(fruit: fruit)
             }// - Loop
         }// - Tabview

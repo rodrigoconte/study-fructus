@@ -10,7 +10,7 @@ import SwiftUI
 
 struct Fruit: Identifiable {
     
-    let id: Int
+    let id = UUID()
     let title: String
     let headline: String
     let image: String
