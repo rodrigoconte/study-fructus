@@ -34,9 +34,20 @@ struct SettingsView: View {
                                     .font(.footnote)
                             }
                         }
-                    )
+                    )// - Group
                     // MARK: - Section 2
                     // MARK: - Section 3
+                    GroupBox(
+                        label:
+                            SettingsLabelView(label: "Application", imageName: "apps.iphone"),
+                        content: {
+                            SettingsRowView(rowTitle: "Developer", rowInfo: "Rodrigo")
+                            SettingsRowView(rowTitle: "SwiftUI Version", rowInfo: "5.0")
+                            SettingsRowView(rowTitle: "Linkedin", rowInfo: "Profile", rowUrl: "https://www.linkedin.com/in/rodrigo-conte-oliv/")
+                            SettingsRowView(rowTitle: "App version", rowInfo: "1.0")
+                            SettingsRowView(rowTitle: "Course by", rowInfo: "Credo academy")
+                        }
+                    )// - Group
                 }// - Vstack
                 .navigationTitle(Text("Settings"))
                 .navigationBarTitleDisplayMode(.large)
