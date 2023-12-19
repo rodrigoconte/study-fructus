@@ -11,6 +11,7 @@ struct SettingsView: View {
     // MARK: - Properties
     
     @Environment(\.dismiss) var dismiss
+    @AppStorage("isOnboarding") var isOnboarding: Bool = false
     
     // MARK: - Body
     var body: some View {
@@ -36,6 +37,36 @@ struct SettingsView: View {
                         }
                     )// - Group
                     // MARK: - Section 2
+                    GroupBox(
+                        label:
+                            SettingsLabelView(label: "Customization", imageName: "paintbrush"),
+                        content: {
+                            Divider()
+                                .padding(.vertical, 4)
+                            Text("If you wish, you can restart application by toggle the switch in this box. That way it starts the onboarding proccess and you will see the welcome screen again")
+                                .padding(.vertical, 4)
+                                .frame(minHeight: 60)
+                                .layoutPriority(1)
+                                .multilineTextAlignment(.leading)
+                            Toggle(isOn: $isOnboarding, label: {
+                                if isOnboarding {
+                                    Text("Restarted".uppercased())
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(.green)
+                                } else {
+                                    Text("Restart".uppercased())
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(.secondary)
+                                }
+                                
+                            })
+                            .padding()
+                            .background(
+                                Color(UIColor.tertiarySystemBackground)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            )
+                        })
+                    
                     // MARK: - Section 3
                     GroupBox(
                         label:
@@ -48,12 +79,14 @@ struct SettingsView: View {
                             SettingsRowView(rowTitle: "Course by", rowInfo: "Credo academy")
                         }
                     )// - Group
+                    
+                    
                 }// - Vstack
                 .navigationTitle(Text("Settings"))
                 .navigationBarTitleDisplayMode(.large)
                 .toolbar {
                     Button() {
-                        print("action")
+                        dismiss()
                     } label: {
                         Image(systemName: "xmark")
                     }
